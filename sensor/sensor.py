@@ -10,10 +10,15 @@ class ISensor(ABC):
     def get_id(self) -> str:
         pass
 
+    @abstractmethod
+    def get_topic(self) -> str:
+        pass
+
 
 class TemperatureSensor(ISensor):
-    def __init__(self, sensor_id: str):
+    def __init__(self, sensor_id: str, topic_name: str):
         self.sensor_id = sensor_id
+        self.topic = topic_name
 
     def read_data(self) -> dict:
         # Simulate reading temperature data
@@ -21,11 +26,15 @@ class TemperatureSensor(ISensor):
 
     def get_id(self) -> str:
         return self.sensor_id
+    
+    def get_topic(self) -> str:
+        return self.topic
 
 
 class HumiditySensor(ISensor):
-    def __init__(self, sensor_id: str):
+    def __init__(self, sensor_id: str, topic_name: str):
         self.sensor_id = sensor_id
+        self.topic = topic_name
 
     def read_data(self) -> dict:
         # Simulate reading humidity data
@@ -34,10 +43,13 @@ class HumiditySensor(ISensor):
     def get_id(self) -> str:
         return self.sensor_id
 
+    def get_topic(self) -> str:
+        return self.topic
 
 class GPSSensor(ISensor):
-    def __init__(self, sensor_id: str):
+    def __init__(self, sensor_id: str, topic_name: str):
         self.sensor_id = sensor_id
+        self.topic = topic_name
 
     def read_data(self) -> dict:
         # Simulate reading GPS data
@@ -50,3 +62,6 @@ class GPSSensor(ISensor):
 
     def get_id(self) -> str:
         return self.sensor_id
+    
+    def get_topic(self) -> str:
+        return self.topic

@@ -9,7 +9,7 @@ class Cobots_Gen(BaseModel):
     temperature: float
     pressure: float
     humidity: float
-    timestamp: datetime
+    timestamp: str
     location: Dict = None
     city: str
 
@@ -22,7 +22,7 @@ class Cobots_Gen(BaseModel):
             temperature=uniform(20.0, 30.0),
             pressure=uniform(1000, 2000),
             humidity=uniform(40.0, 60.0),
-            timestamp=datetime.now().strftime('%Y-%m-%dT%H:%M:%S'),
+            timestamp=str(datetime.now().strftime('%Y-%m-%dT%H:%M:%S')),
             location={
                 "latitude": uniform(-90, 90),
                 "longitude": uniform(-180, 180)
@@ -38,7 +38,7 @@ class SCARA_Gen(BaseModel):
     temperature: float
     pressure: float
     humidity: float
-    timestamp: datetime
+    timestamp: str
     location: Dict = None
     city: str
 
@@ -51,7 +51,7 @@ class SCARA_Gen(BaseModel):
             temperature=uniform(20.0, 30.0),
             pressure=uniform(1000, 2000),
             humidity=uniform(40.0, 60.0),
-            timestamp=datetime.now().strftime('%Y-%m-%dT%H:%M:%S'),
+            timestamp=str(datetime.now().strftime('%Y-%m-%dT%H:%M:%S')),
             location={
                 "latitude": uniform(-90, 90),
                 "longitude": uniform(-180, 180)

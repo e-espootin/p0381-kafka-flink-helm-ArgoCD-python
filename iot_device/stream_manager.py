@@ -22,5 +22,6 @@ class StreamManager:
             for sensor in self.sensors:
                 data = sensor.read_data()
                 print(f"Collected data: {data}")
-                self.stream_handler.send(data)
+                print(f"sensor topic: {sensor.topic}")
+                self.stream_handler.send(topic=sensor.topic, data=data)
             time.sleep(interval)
