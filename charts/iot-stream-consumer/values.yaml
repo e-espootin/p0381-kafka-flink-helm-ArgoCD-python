@@ -1,0 +1,28 @@
+
+appName: iot-stream-consumer
+container_name: iot-stream-consumer-container
+port: 9601
+
+service:
+  port: 9602
+  type: ClusterIP
+
+namespace: dev
+
+deployment:
+  replicas: 2
+  
+configmap:
+  name: iot-stream-consumer-configmap
+  data:
+    CUSTOM_HEADER: 'This app was deployed with helm!'
+
+image:
+  name: e4espootin/iot-stream-consumer
+  tag: latest
+
+secret:
+  # secret_id: AWS_ACCESS_KEY_ID
+  # secret_key: AWS_SECRET_ACCESS_KEY
+  secret_config_name: azure-connectionstrin-secret-etlop
+  azure_conn_str: AZURE_STORAGE_CONNECTION_STRING

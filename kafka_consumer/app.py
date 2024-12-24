@@ -38,7 +38,10 @@ def consume_and_store_streams():
             bootstrap_servers=kafka_broker,
             topic_name=kafka_topic
         )
-        kafka_manager.set_azure_blob_storage(connection_string=azure_connection_string, container_name=config['azure_blob_storage']['container_name'], BLOB_NAME=config['azure_blob_storage']['blob_name'])
+        kafka_manager.set_azure_blob_storage(connection_string=azure_connection_string, container_name=config['azure_blob_storage']['container_name'], 
+                                             BLOB_NAME=config['azure_blob_storage']['blob_name'],
+                                             transformed_type = config['azure_blob_storage']['transformed_type']
+                                             )
 
         # logger.info(f"Starting consumer for topic: {topic}")
         print(f"Kafka bootstrap: {kafka_manager.bootstrap_servers}")

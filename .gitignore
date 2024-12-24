@@ -1,1 +1,13 @@
 .venv
+
+#
+flink/.venv_311
+
+deployments/docker/*
+
+flink/*
+
+clickhouse/*
+
+clickhouse/.venv
+clickhouse/config/__pycache__/*

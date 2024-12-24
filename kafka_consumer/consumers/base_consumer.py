@@ -23,12 +23,14 @@ class MyKafkaManager:
         self.CONNECTION_STRING = None
         self.CONTAINER_NAME = None
         self.BLOB_NAME = None
+        self.transformed_type = None
 
     
-    def set_azure_blob_storage(self, *, connection_string: str, container_name: str, BLOB_NAME: str):
+    def set_azure_blob_storage(self, *, connection_string: str, container_name: str, BLOB_NAME: str, transformed_type: str):
         self.CONNECTION_STRING = connection_string
         self.CONTAINER_NAME = container_name
         self.BLOB_NAME = BLOB_NAME
+        self.transformed_type = transformed_type
 
     def set_aws_s3_storage(self, aws_access_key_id, aws_secret_key, bucket_name, s3_file_path):
         self.aws_access_key_id = aws_access_key_id
@@ -108,8 +110,8 @@ class MyKafkaManager:
 
             # file name with date - time stamp
             filename = f'sensor_{self.topic_name}_{pd.Timestamp.now().strftime("%Y%m%d_%H%M%S")}.csv'
-            directory = f'{self.BLOB_NAME}/raw/{self.topic_name}/{filename}'
-            
+            directory = f'{self.BLOB_NAME}/{self.transformed_type}/{self.topic_name}/{filename}'
+            print(f"directory : {directory}")
             # Convert DataFrame to CSV in memory
             csv_buffer = StringIO()
             df.to_csv(csv_buffer, index=False)
